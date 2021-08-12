@@ -19,26 +19,38 @@
 
 typedef struct s_philo
 {
+	int		index;
+	long 	last_meal;
+}				t_philo;
+
+typedef struct s_data
+{
 	int				phil_n;
 	int				die_time;
 	int				eat_time;
 	int				sleep_time;
-	int				must_eat;
-	int				death;
-	pthread_t		*philos;
+	int				meals_num;
+	int 			death;
+	pthread_t		*pthreads;
 	pthread_mutex_t	*forks;
-}				t_philo;
+	pthread_mutex_t	death_m;
+	pthread_mutex_t print_m;
+	t_philo 		*philos;
+}				t_data;
+
 
 void	check_args(int argc);
 
-void	init(t_philo *p_s, char *argv[]);
+void	init(t_data *p_s, char *argv[]);
 
-void 	*create_arr(t_philo *philo, int size);
+void 	*create_arr(t_data *philo, int size);
 
 void 	check_arr_creation(void *arr1, void *arr2);
 
-int 	create_philos(t_philo *philo);
+int 	create_philos(t_data *philo);
 
-int		create_forks(t_philo *philo);
+int		create_forks(t_data *philo);
+
+void 	exec(t_data *philo);
 
 #endif

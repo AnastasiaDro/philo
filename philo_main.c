@@ -14,11 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
-	t_philo		philo;
+	t_data		philo;
 	check_args(argc);
 	init(&philo, argv);
-	philo.philos = create_arr(&philo, sizeof (pthread_t));
+	philo.pthreads = create_arr(&philo, sizeof (pthread_t));
 	philo.forks = create_arr(&philo, sizeof(pthread_mutex_t));
-	check_arr_creation(philo.philos, philo.forks);
-
+	check_arr_creation(philo.pthreads, philo.forks);
+	exec(&philo);
 }
