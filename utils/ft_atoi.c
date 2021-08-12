@@ -21,7 +21,7 @@ static int	calc_coef(char c)
 	return (coef);
 }
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	int		i;
 	int		coef;

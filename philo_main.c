@@ -14,9 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
-	t_philo	philo;
-//чекнуть сабджект на возвращаемое значение и сообщение для обработки ошибок
+	t_philo		philo;
 	check_args(argc);
-	init(&philo, argv);	//заполнили структуру с данными
+	init(&philo, argv);
+	philo.philos = create_arr(&philo, sizeof (pthread_t));
+	philo.forks = create_arr(&philo, sizeof(pthread_mutex_t));
+	check_arr_creation(philo.philos, philo.forks);
 
 }

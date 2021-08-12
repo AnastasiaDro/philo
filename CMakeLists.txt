@@ -9,4 +9,4 @@ find_package(Threads REQUIRED)
 #add_executable(philo main_thread_cycle.c)
 
 #add_executable(philo main_gat_val_f_thread.c)
-add_executable(philo philo_main.c check_args.c init.c utils/ft_atoi.c)
+add_executable(philo philo_main.c check_args.c init.c utils/ft_atoi.c create.c)
