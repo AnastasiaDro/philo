@@ -14,6 +14,7 @@
 # define PHILO_H
 #include <stdio.h>
 #include <stdlib.h>
+#include "utils/utils.h"
 
 typedef struct s_philo
 {
@@ -26,6 +27,6 @@ typedef struct s_philo
 
 void	check_args(int argc);
 
-void	init(t_philo *phil_s);
+void	init(t_philo *philo_s, char *argv[]);
 
 #endif

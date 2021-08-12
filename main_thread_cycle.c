@@ -22,14 +22,13 @@ void *routine()
 
 int main()
 {
-	pthread_t th[4];
-	int i = 0;
+	pthread_t	th[4];
+	int			i = 0;
 
 	pthread_mutex_init(&mutex, NULL);
-	while(i < 4)
+	while (i < 4)
 	{
-		if (pthread_create(th + i, NULL, &routine, NULL)!=0)
-		{
+		if (pthread_create(th + i, NULL, &routine, NULL) != 0) {
 			perror("Failed to create thread\n");
 			return 1;
 		}
@@ -37,9 +36,8 @@ int main()
 		i++;
 	}
 	i = 0;
-	while(i < 4)
-	{
-		if (pthread_join(th[i], NULL)!=0)
+	while (i < 4) {
+		if (pthread_join(th[i], NULL) != 0)
 			return 2;
 
 		i++;

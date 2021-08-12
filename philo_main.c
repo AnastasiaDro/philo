@@ -14,8 +14,9 @@
 
 int	main(int argc, char *argv[])
 {
-	t_philo philo;
+	t_philo	philo;
 //чекнуть сабджект на возвращаемое значение и сообщение для обработки ошибок
 	check_args(argc);
-	init(&philo);
+	init(&philo, argv);	//заполнили структуру с данными
+
 }

@@ -16,7 +16,6 @@
 void	check_args(int argc)
 {
 	if (argc < 4 || argc > 5)
-		//чекнуть сабджект на возвращаемое значение и сообщение для обработки ошибок
 	{
 		printf("Invalid arguments number!\n");
 		exit(1);
