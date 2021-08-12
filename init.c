@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/time.h>
 #include "philo.h"
 
 int	check_data(t_data *p_s)
@@ -36,10 +37,33 @@ int	init_mutes(t_data *p_s)
 	return (0);
 }
 
+pthread_mutex_t get_second(int i, t_data *data)
+{
+	pthread_mutex_t second_fork;
+
+	if (i == 0)
+		second_fork = data->forks[data->phil_n - 1];
+	else
+		second_fork = data->forks[i - 1];
+	return (second_fork);
+}
+
+
+size_t getTime()
+{
+	size_t milisec;
+	struct timeval t;
+
+	gettimeofday(&t, NULL);
+	milisec = t.tv_sec / 1000 + t.tv_usec * 1000;
+	return (milisec);
+}
+
+
 t_philo *init_philos(t_data *data)
 {
-	int		i;
-	t_philo *philos;
+	int				i;
+	t_philo 		*philos;
 
 	i = 0;
 	philos = malloc(data->phil_n * sizeof (t_philo));
@@ -47,8 +71,20 @@ t_philo *init_philos(t_data *data)
 		return (NULL);
 	while (i < data->phil_n)
 	{
-		philos->index = i;
-		philos->data = data;
+		philos[i].index = i;
+		philos[i].data = data;
+		philos->last_meal = getTime();
+		if ((i + 1) % 2)
+		{
+			philos->fork_one = data->forks[i];
+			philos->fork_two = get_second(i , data);
+		}
+		else
+		{
+			philos->fork_one = data->forks[i - 1];
+			philos->fork_two = data->forks[i];
+		}
+		i++;
 	}
 	return (philos);
 }

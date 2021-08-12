@@ -19,9 +19,9 @@ int	main(int argc, char *argv[])
 
 	check_args(argc);
 	init_data(&data, argv);
-	philos = init_philos(&data);
 	data.pthreads = create_arr(&data, sizeof (pthread_t));
 	data.forks = create_arr(&data, sizeof(pthread_mutex_t));
+	philos = init_philos(&data);
 	check_arr_creation(data.pthreads, data.forks);
 	exec(philos, &data);
 }

@@ -16,6 +16,11 @@
 #include <stdlib.h>
 #include "utils/utils.h"
 #include <pthread.h>
+#define TAKE_FORK "has taken a fork"
+#define EAT "is eating"
+#define SLEEP "is sleeping"
+#define THINK "is thinking"
+#define DIED "died"
 
 typedef struct s_data
 {
@@ -33,13 +38,15 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	int		index;
-	long 	last_meal;
-	t_data 	*data;
+	int				index;
+	size_t			last_meal;
+	pthread_mutex_t fork_one;
+	pthread_mutex_t fork_two;
+	t_data 			*data;
 }				t_philo;
 
 
-
+size_t  getTime();
 
 void	check_args(int argc);
 
