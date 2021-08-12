@@ -1,11 +1,11 @@
 #include "philo.h"
 
 
-void 	*create_arr(t_data *philo, int size)
+void 	*create_arr(t_data *data, int size)
 {
 	void *arr;
 
-	arr = malloc(philo->phil_n * size);
+	arr = malloc(data->phil_n * size);
 	return (arr);
 }
 

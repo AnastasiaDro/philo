@@ -17,12 +17,6 @@
 #include "utils/utils.h"
 #include <pthread.h>
 
-typedef struct s_philo
-{
-	int		index;
-	long 	last_meal;
-}				t_philo;
-
 typedef struct s_data
 {
 	int				phil_n;
@@ -35,22 +29,34 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death_m;
 	pthread_mutex_t print_m;
-	t_philo 		*philos;
 }				t_data;
+
+typedef struct s_philo
+{
+	int		index;
+	long 	last_meal;
+	t_data 	*data;
+}				t_philo;
+
+
 
 
 void	check_args(int argc);
 
-void	init(t_data *p_s, char *argv[]);
+void	init_data(t_data *p_s, char *argv[]);
 
-void 	*create_arr(t_data *philo, int size);
+void 	*create_arr(t_data *data, int size);
 
 void 	check_arr_creation(void *arr1, void *arr2);
+
+t_philo *init_philos(t_data *data);
+
+int	start_threads(t_philo *philos, t_data *data);
 
 int 	create_philos(t_data *philo);
 
 int		create_forks(t_data *philo);
 
-void 	exec(t_data *philo);
+void	exec(t_philo *philos, t_data *data);
 
 #endif

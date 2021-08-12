@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cerebus <cerebus@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -36,24 +36,36 @@ int	init_mutes(t_data *p_s)
 	return (0);
 }
 
-void	init(t_data *p_s, char *argv[])
+t_philo *init_philos(t_data *data)
+{
+	int		i;
+	t_philo *philos;
+
+	i = 0;
+	philos = malloc(data->phil_n * sizeof (t_philo));
+	if (!philos)
+		return (NULL);
+	while (i < data->phil_n)
+	{
+		philos->index = i;
+		philos->data = data;
+	}
+	return (philos);
+}
+
+
+void	init_data(t_data *p_s, char *argv[])
 {
 	p_s->phil_n = ft_atoi(argv[1]);
 	p_s->die_time = ft_atoi(argv[2]);
 	p_s->eat_time = ft_atoi(argv[3]);
 	p_s->sleep_time = ft_atoi(argv[4]);
 	init_mutes(p_s);
-	p_s->philos	= malloc(p_s->phil_n * sizeof (t_philo));
 	if (check_data(p_s))
 		exit(1);
-	if(!p_s->philos)
-		exit(2);
 	p_s->death = 0;
 	if (argv[5])
 		p_s->meals_num = ft_atoi(argv[5]);
 	else
 		p_s->meals_num = -1;
-
-
 }
-
