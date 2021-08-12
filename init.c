@@ -73,16 +73,16 @@ t_philo *init_philos(t_data *data)
 	{
 		philos[i].index = i;
 		philos[i].data = data;
-		philos->last_meal = getTime();
+		philos[i].last_meal = getTime();
 		if ((i + 1) % 2)
 		{
-			philos->fork_one = data->forks[i];
-			philos->fork_two = get_second(i , data);
+			philos[i].fork_one = data->forks[i];
+			philos[i].fork_two = get_second(i , data);
 		}
 		else
 		{
-			philos->fork_one = data->forks[i - 1];
-			philos->fork_two = data->forks[i];
+			philos[i].fork_one = data->forks[i - 1];
+			philos[i].fork_two = data->forks[i];
 		}
 		i++;
 	}

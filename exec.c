@@ -3,9 +3,6 @@
 
 int check_death(t_philo *phil, t_data *data)
 {
-	t_data *data;
-
-	data = phil->data;
 	printf("index = %d\n", phil->index);
 	if (getTime() - phil->last_meal > data->die_time)
 	{
