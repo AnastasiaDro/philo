@@ -1,6 +1,13 @@
 #include <unistd.h>
 #include "philo.h"
 
+void	print_status(size_t time, int index, char *status, t_data *data)
+{
+	pthread_mutex_lock(&data->print_m);
+	printf("%zul %d %s\n", getTime(), index, TAKE_FORK);
+	pthread_mutex_unlock(&data->print_m);
+}
+
 int check_death(t_philo *phil, t_data *data)
 {
 	printf("index = %d\n", phil->index);
@@ -27,9 +34,10 @@ void *philo_routine(void *philo)
 		if (check_death(phil, data))
 			return (philo);
 		pthread_mutex_lock(&phil->fork_one);
-		printf("%zul %d %s\n", getTime(), phil->index, TAKE_FORK);
+	//	printf("%zul %d %s\n", getTime(), phil->index, TAKE_FORK);
+		print_status(getTime(), phil->index + 1, TAKE_FORK, data);
 		pthread_mutex_lock(&phil->fork_two);
-		printf("%zul %d %s\n", getTime(), phil->index, TAKE_FORK);
+		print_status(getTime(), phil->index + 1, TAKE_FORK, data);
 		printf("%zul %d %s\n", getTime(), phil->index, EAT);
 		usleep(phil->data->eat_time);
 		pthread_mutex_unlock(&phil->fork_one);
