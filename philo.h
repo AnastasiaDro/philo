@@ -40,8 +40,8 @@ typedef struct s_philo
 {
 	int				index;
 	size_t			last_meal;
-	pthread_mutex_t fork_one;
-	pthread_mutex_t fork_two;
+	pthread_mutex_t *fork_one;
+	pthread_mutex_t *fork_two;
 	t_data 			*data;
 }				t_philo;
 
@@ -50,13 +50,17 @@ size_t  getTime();
 
 void	check_args(int argc);
 
-void	init_data(t_data *p_s, char *argv[]);
+void	init_data(t_data *data, char *argv[]);
 
 void 	*create_arr(t_data *data, int size);
+
+void	print_status(int index, char *status, t_data *data);
 
 void 	check_arr_creation(void *arr1, void *arr2);
 
 t_philo *init_philos(t_data *data);
+
+//t_philo *init_philos(t_data **data);
 
 int	start_threads(t_philo *philos, t_data *data);
 
