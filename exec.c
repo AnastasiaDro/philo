@@ -39,6 +39,7 @@ void *philo_routine(void *philo)
 	t_data 	*data;
 
 	phil = (t_philo *) philo;
+	phil->last_meal = getTime();
 	data = phil->data;
 	while(1)
 	{
